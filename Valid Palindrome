@@ -1,0 +1,73 @@
+/*
+A phrase is a palindrome if,
+after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, 
+it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+
+Given a string s, return true if it is a palindrome, or false otherwise.
+
+*/
+
+// problem link -> https://leetcode.com/problems/valid-palindrome/
+
+class Solution {
+bool ValidChar(char ch){
+    if(((ch >= 'a') && (ch <= 'z')) ||( (ch >= 'A') && (ch <= 'Z'))){
+        return true;
+    }
+    else if((ch >= '0') && ch <= '9'){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+char tolower(char s1){
+   if((s1 >= 'A') && (s1 <= 'Z')){
+       s1 = s1+32;
+   }
+   return s1;
+}
+
+bool checkPalindrome(string s2){
+    int start = 0 ; 
+    int e = s2.length()-1;
+    while((start<=e) && (start < s2.length())){
+
+        if(s2[start]!= s2[e]){
+            return false;
+        }
+        start++;
+        e--;
+    }
+    return true;
+}
+
+public:
+    bool isPalindrome(string s) {
+
+       string str = "";
+       int size = s.length();
+       int i =  0;
+
+       while((s[i]!='\0') && ( i < size))
+       {
+            char word = s[i];
+            bool check =  ValidChar(word);
+
+            if(check == true){
+               char ch =  tolower(word);
+                str.push_back(ch);
+            }
+            i++;
+       }
+
+      bool checking = checkPalindrome(str);
+
+      if(checking == true){
+          return true;
+      }
+      return false;
+
+    }
+};
